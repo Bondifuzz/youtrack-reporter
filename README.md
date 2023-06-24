@@ -1,4 +1,4 @@
-# youtrack-integration
+# Youtrack-reporter
 
 ## Local development
 
@@ -19,4 +19,3 @@ To run this server locally you should run next commands:
 * For testing an API of YouTrack Reporter Service you can use Postman. In Postman you can import file `local/openapi.json` and make some requests to the API
 * `python -m local.{script_name}` - run script from "__./local__" directory, for example `python -m local.tests.yt_api` - testing of YouTrackAPI
 * Also you can `cd local/tests/mq_producers` and run `python producer.py {config id}` - it will produce message to __"youtrack-reporter.crashes.duplicate"__ and __"youtrack-reporter.crashes.unique"__ chanels using config with specified id
-
