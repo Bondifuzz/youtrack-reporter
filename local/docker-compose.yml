@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  sqs:
+    image: softwaremill/elasticmq-native@sha256:fd7e2193b2cdc6d69b20b353ba385fef8f68955ddd1bd64e32648f650f566503
+    volumes:
+      - type: bind
+        source: ./elasticmq.conf
+        target: /opt/elasticmq.conf
+    ports:
+      - "9324:9324"
+      - "9325:9325"
+  arangodb:
+    image: arangodb:3.8.1
+    environment:
+      - ARANGO_RANDOM_ROOT_PASSWORD=1
+    volumes:
+      - type: volume
+        source: arangodb
+        target: /var/lib/arangodb3
+    ports:
+      - "8529:8529"
+    # command: '--database.auto-upgrade true'
+  youtrack:
+    image: jetbrains/youtrack:2022.2.51836
+    volumes:
+      - yt_data:/opt/youtrack/data
+      - yt_logs:/opt/youtrack/logs
+      - yt_conf:/opt/youtrack/conf
+      - yt_backups:/opt/youtrack/backups
+    ports:
+      - "31337:8080"
+
+volumes:
+  arangodb:
+  yt_data:
+  yt_logs:
+  yt_conf:
+  yt_backups: 
